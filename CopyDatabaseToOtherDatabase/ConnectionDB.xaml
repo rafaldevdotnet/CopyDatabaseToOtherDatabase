@@ -1,0 +1,197 @@
+﻿<Window x:Class="CopyDatabaseToOtherDatabase.ConnectionDB"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CopyDatabaseToOtherDatabase"
+        mc:Ignorable="d"
+        Name="WindowConnectionDB"
+        Title="Parametry połączenia" 
+        Height="340" Width="380"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid Height="270" VerticalAlignment="Top">
+            <GroupBox x:Name="radGroupBox1" 
+                  Header="Informacje o serwerze SQL"
+                  Width="350"
+                  Height="190"
+                  VerticalAlignment="Top"
+                  >
+                <Grid Width="330"
+                  Height="160">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="9*"/>
+                        <ColumnDefinition Width="19*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Serwer: "
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Bottom" 
+                       Height="20" 
+                       FontSize="8"/>
+                    <ComboBox x:Name="radSerwerSQL" 
+                              Grid.Row="0"
+                              Grid.Column="1"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Bottom"
+                              Width="190" Height="22" 
+                              SelectionChanged="radSerwerSQL_SelectionChanged"
+                              IsEditable="True"/>
+                    <Button x:Name="radBTNrefreshDB"
+                            Grid.Column="2"
+                            Grid.Row="0"
+                            Height="22"
+                            Width="19"
+                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Left" 
+                            Click="radBTNrefreshDB_Click">
+                        <Image Source="refresh_icon.png"
+                               Stretch="Fill"/>
+                    </Button>
+
+                    <Label Content="Nazwa użytkownika: "
+                           Grid.Row="2"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="3"
+                           FontSize="8" Margin="45,5,5,27" Grid.RowSpan="2"
+                           />
+                    <TextBox x:Name="radUserSQL"
+                             Grid.Row="2"
+                             Grid.Column="1"
+                             Grid.ColumnSpan="2"
+                             Height="20"
+                             Width="166"
+                             HorizontalAlignment="Center"
+                             />
+                    <Label Content="Hasło: "
+                           Grid.Row="3"
+                           Grid.Column="1"
+                           Grid.ColumnSpan="2" 
+                           Margin="5,6,5,0"
+                           FontSize="8"
+                           />
+                    <PasswordBox x:Name="radUserSQLHaslo"
+                                 Grid.Row="3"
+                                 Grid.Column="1"
+                                 Grid.ColumnSpan="2"
+                                 Height="20"
+                                 Width="166"
+                                 HorizontalAlignment="Center"
+                                 />
+                    <TextBlock x:Name="radLBLtestSQL"
+                               Grid.Row="4"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="3" 
+                               FontSize="8" 
+                               VerticalAlignment="Center"
+                       >
+                        <Hyperlink Click="radLBLtestSQL_Click" >
+                            Sprawdź połączenie z serwerem SQL 
+                        </Hyperlink>
+                    </TextBlock>
+                    <CheckBox x:Name="radAutentykacja"   
+                              Grid.Column="0"
+                              Grid.ColumnSpan="3"
+                              Grid.Row="1"
+                              VerticalAlignment="Bottom"
+                              HorizontalAlignment="Center"
+                              Content="Autentykacja Windows użytkownika serwera"                                                                               
+                              FontSize="8" Checked="radAutentykacja_Checked" 
+                              Unchecked="radAutentykacja_Checked"
+                              IsChecked="True"/>
+
+                </Grid>
+            </GroupBox>
+            <GroupBox x:Name="radGroupBox2"
+                  Header="Informacje o bazie danych"
+                  Height="80"
+                  Width="350"
+                  VerticalAlignment="Bottom"
+                  >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="47*"/>
+                        <ColumnDefinition Width="95*"/>
+                        <ColumnDefinition Width="27*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Nazwa bazy : "
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Bottom" 
+                       Height="20" 
+                       FontSize="8" Width="65"/>
+                    <ComboBox x:Name="radBazyDanych" 
+                                     Grid.Row="0"
+                                     Grid.Column="1"
+                                     HorizontalAlignment="Left"
+                                     VerticalAlignment="Bottom"
+                                     Width="190" Height="22" SelectionChanged="radBazyDanych_SelectionChanged"/>
+                    <Button x:Name="radBTNrefreshPodmioty"
+                            Grid.Column="2"
+                            Grid.Row="0"
+                            Height="22"
+                            Width="19"
+                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Left" 
+                            Click="radBTNrefreshPodmioty_Click">
+                        <Image Source="refresh_icon.png"
+                               Stretch="Fill"/>
+
+                    </Button>
+                    <TextBlock x:Name="radLBLtestDB"
+                               Grid.Row="1"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="3"
+                               FontSize="8"
+                               VerticalAlignment="Bottom" 
+                               Margin="11,0,0,0"
+                               Hyperlink.Click="radLBLtestDB_Click"
+                               >
+                        <Hyperlink Click="radLBLtestDB_Click" >
+                            Sprawdź połączenie z serwerem SQL 
+                        </Hyperlink>
+                    </TextBlock>
+                </Grid>
+            </GroupBox>
+        </Grid>
+        <Grid Height="30" Width="345" VerticalAlignment="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="115*"/>
+                <ColumnDefinition Width="147*"/>
+                <ColumnDefinition Width="83*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="radBTNzapisz"
+                    Content="Zapisz"
+                    Grid.Column="2"
+                    Width="80"
+                    HorizontalAlignment="Right"
+                    FontSize="10" 
+                    Height="24" Click="radBTNzapisz_Click"
+                    />
+            <Button x:Name="radBTNanuluj"
+                    Content="Anuluj"
+                    Grid.Column="1"
+                    Width="80"
+                    HorizontalAlignment="Right"
+                    FontSize="10" 
+                    Height="24" Click="radBTNanuluj_Click"
+                    />
+
+        </Grid>
+    </Grid>
+</Window>
